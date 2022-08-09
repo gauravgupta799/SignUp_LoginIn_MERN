@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styles from "../Login/style.module.css";
 import {Link } from "react-router-dom";
 import axios from "axios";
+// import { ToastContainer, toast } from 'react-toastify';
 
 const LogIn = () =>{
     const [error, setError ] = useState("");
@@ -21,7 +22,7 @@ const LogIn = () =>{
             const {data:res} = await axios.post(url, data);
             localStorage.setItem("token", res.data);
             window.location = "/";
-            console.log(res.message);
+
         }catch(error){
             if(error.message && error.response.status >= 400 && error.response.status <= 500){
                 setError(error.response.data.message);
