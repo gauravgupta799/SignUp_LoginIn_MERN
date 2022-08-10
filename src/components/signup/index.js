@@ -23,6 +23,7 @@ const Signup = () =>{
         try{
             const {data:res} = await axios.post(url, data);
             setMsg(res.message);
+            window.location = "/login";
 
         }catch(error){
             if(error.message && error.response.status >= 400 && error.response.status <= 500){
