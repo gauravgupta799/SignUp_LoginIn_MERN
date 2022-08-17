@@ -109,3 +109,14 @@
 .success_msg{
     background-color: #5cdd5c;
 }
+
+#passwordFieldDiv{
+    position: relative;
+}
+#toggler_icon{
+    position: absolute;
+    top: 40%;
+    right: 18px;
+    transform: translate(50%);
+    color:#3bb19b;
+}

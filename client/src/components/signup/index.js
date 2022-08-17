@@ -4,6 +4,8 @@ import {Link} from "react-router-dom";
 import axios from "axios"
 
 const Signup = () =>{
+    const [passwordType, setPasswordType] = useState("password");
+    const [icon , setIcon] = useState("fa fa-eye-slash");
     const [msg, setMsg] = useState("");
     const [error, setError ] = useState("");
     const [data, setData ] = useState({
@@ -23,14 +25,25 @@ const Signup = () =>{
         try{
             const {data:res} = await axios.post(url, data);
             setMsg(res.message);
+            window.location = "/login";
 
         }catch(error){
             if(error.message && error.response.status >= 400 && error.response.status <= 500){
                 setError(error.response.data.message);
             }
         }
-
     }
+
+    const showHidePassword = () => {
+        if (passwordType === "password" ) { 
+            setPasswordType("text");
+            setIcon("fa fa-eye");
+        } else {
+            setPasswordType("password");
+            setIcon("fa fa-eye-slash");
+        }   
+    }
+
     return (
         <div className = {styles.signup_container}>
             <div className = {styles.signup_form_container}>
@@ -72,15 +85,18 @@ const Signup = () =>{
                        required
                        onChange ={handleChange}
                        />
-                     <input 
-                       type="password" 
-                       placeholder="Password"
-                       className = {styles.input}
-                       name="password"
-                       value ={data.password}
-                       required
-                       onChange ={handleChange}
-                       />
+                    <div id= {styles.passwordFieldDiv}>
+                        <input 
+                        type={passwordType}
+                        placeholder="Password"
+                        className = {styles.input}
+                        name="password"
+                        value ={data.password}
+                        required
+                        onChange ={handleChange}
+                        />
+                      <span><i id= {styles.toggler_icon} className= {icon} onClick = {showHidePassword}></i></span>
+                    </div>
                        {error && 
                         <div className={styles.error_msg}>{error}</div>
                        }
