@@ -5,6 +5,8 @@ import axios from "axios";
 // import { ToastContainer, toast } from 'react-toastify';
 
 const LogIn = () =>{
+    const [passwordType, setPasswordType] = useState("password");
+    const[icon , setIcon] = useState("fa fa-eye-slash");
     const [error, setError ] = useState("");
     const [data, setData ] = useState({
         email:"",
@@ -30,6 +32,15 @@ const LogIn = () =>{
         }
 
     };
+    const showHidePassword = () => {
+        if (passwordType === "password" ) { 
+            setPasswordType("text");
+            setIcon("fa fa-eye");
+        } else {
+            setPasswordType("password");
+            setIcon("fa fa-eye-slash");
+        }   
+    }
     
     return (
         <div className = {styles.login_container}>
@@ -46,15 +57,18 @@ const LogIn = () =>{
                        required
                        onChange ={handleChange}
                        />
-                     <input 
-                       type="password" 
-                       placeholder="Password"
-                       className = {styles.input}
-                       name="password"
-                       value ={data.password}
-                       required
-                       onChange ={handleChange}
-                       />
+                       <div id= {styles.passwordFieldDiv}>
+                            <input 
+                            type={passwordType} 
+                            placeholder="Password"               
+                            className = {styles.input}
+                            name="password"
+                            value ={data.password}
+                            required
+                            onChange ={handleChange}
+                            />
+                            <span><i id= {styles.toggler_icon} className= {icon} onClick = {showHidePassword}></i></span>
+                       </div>
                        {error && 
                         <div className={styles.error_msg}>{error}</div>
                        }

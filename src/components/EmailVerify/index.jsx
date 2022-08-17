@@ -31,7 +31,6 @@ const EmailVerify = () => {
             <Link to ="/login">
                 <button className = {styles.green_btn}>Login</button>
             </Link>
-
             </div>
           ):(
             <h1>404 Not Found!</h1>

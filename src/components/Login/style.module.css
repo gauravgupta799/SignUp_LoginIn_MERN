@@ -65,6 +65,10 @@
     margin: 5px 0;
     font-size:14px;  
 }
+/* .form_container .input:focus{
+    background-color: #3bb19b;
+    color: #fff;
+} */
 
 .white_btn, .green_btn {
     border:none;
@@ -106,4 +110,14 @@
     border-radius: 5px;
     text-align: center;
 
+}
+#passwordFieldDiv{
+    position: relative;
+}
+#toggler_icon{
+    position: absolute;
+    top: 40%;
+    right: 18px;
+    transform: translate(50%);
+    color:#3bb19b;
 }
