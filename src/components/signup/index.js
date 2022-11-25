@@ -13,6 +13,7 @@ const Signup = () =>{
         lastName:"",
         email:"",
         password:"",
+
     });
 
     const handleChange = ({currentTarget:input}) => {
@@ -21,10 +22,11 @@ const Signup = () =>{
 
     const handleSubmit= async (e) =>{
         e.preventDefault();
-        const url = "http://localhost:8080/api/users";
+        const url = "http://localhost:8080/api/users/register";
         try{
             const {data:res} = await axios.post(url, data);
             setMsg(res.message);
+            localStorage.setItem("user",[data.firstName,data.email]);
             window.location = "/login";
 
         }catch(error){

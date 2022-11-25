@@ -19,7 +19,7 @@ const LogIn = () =>{
 
     const handleSubmit= async (e) =>{
         e.preventDefault();
-        const url = "http://localhost:8080/api/auth";
+        const url = "http://localhost:8080/api/auth/login";
         try{
             const {data:res} = await axios.post(url, data);
             localStorage.setItem("token", res.data);
@@ -28,6 +28,9 @@ const LogIn = () =>{
         }catch(error){
             if(error.message && error.response.status >= 400 && error.response.status <= 500){
                 setError(error.response.data.message);
+                setTimeout(()=>{
+                   setError();
+                },1500);
             }
         }
 
@@ -73,6 +76,12 @@ const LogIn = () =>{
                         <div className={styles.error_msg}>{error}</div>
                        }
                        <button type= "submit" className = {styles.green_btn}>Sign In</button>
+                       <div className={styles.forgotpass}>
+                         <span>Forgot password? </span>
+                         <Link to = "/forgotpassword" className= {styles.link}>
+                            <span >Click here</span>
+                         </Link> 
+                       </div>
                   </form>
                 </div>
                 <div className = {styles.right}>
